@@ -69,6 +69,7 @@ $(function() {
          */
 
          it("menu hidden by default", function() {
+           //checks if menu-hidden class is active
            expect($("body").hasClass("menu-hidden")).toBe(true);
          });
 
@@ -79,11 +80,15 @@ $(function() {
           */
 
           it("menu hides/appears on menu-icon click", function() {
+            //if menu-hidden class is active, and user clicks the menu icon,
+            //menu-hidden class should toggle
             if($("body").hasClass("menu-hidden")) {
               $(".menu-icon-link").click();
               expect($("body").hasClass("menu-hidden")).toBe(false);
             }
-            else if (!==$("body").hasClass("menu-hidden")) {
+            //if menu-hidden class is inactive, and user clicks the menu icon,
+            //menu-hidden class should toggle
+            else if (!$("body").hasClass("menu-hidden")) {
               $(".menu-icon-link").click();
               expect($("body").hasClass('menu-hidden')).toBe(true);
             }
@@ -91,6 +96,9 @@ $(function() {
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
+    describe("Initial Entries", function() {
+
+
 
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
@@ -98,6 +106,16 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+
+         //ensures feeds are loaded asynchonously
+         beforeEach(function(done) {
+           loadFeed(0, function() {
+             done();
+           });
+         });
+
+         
+    });
 
     /* TODO: Write a new test suite named "New Feed Selection"
 
