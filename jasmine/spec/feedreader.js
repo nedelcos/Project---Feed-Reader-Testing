@@ -69,7 +69,7 @@ $(function() {
          */
 
          it("menu hidden by default", function() {
-           expect($('body').hasClass('menu-hidden')).toBe(true);
+           expect($("body").hasClass("menu-hidden")).toBe(true);
          });
 
          /* TODO: Write a test that ensures the menu changes
@@ -78,16 +78,16 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
 
-          if("menu hides/appears on menu-icon click", function() {
-            if($('body').hasClass('menu-hidden')) {
-              $('.menu-icon-link').click();
-              expect($('body').hasClass('menu-hidden')).toBe(false);
+          it("menu hides/appears on menu-icon click", function() {
+            if($("body").hasClass("menu-hidden")) {
+              $(".menu-icon-link").click();
+              expect($("body").hasClass("menu-hidden")).toBe(false);
             }
-            else {
-              expect($('body').hasClass('menu-hidden')).toBe(true);
+            else if (!==$("body").hasClass("menu-hidden")) {
+              $(".menu-icon-link").click();
+              expect($("body").hasClass('menu-hidden')).toBe(true);
             }
-          })
-
+          });
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
