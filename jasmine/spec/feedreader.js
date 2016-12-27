@@ -114,9 +114,10 @@ $(function() {
            });
          });
 
-         it("feed container not empty", function() {
+         it("feed container not empty", function(done) {
            //checks if there is at least one .entry element
            expect($('.entry').length).not.toBe(0);
+           done();
          });
     });
 
@@ -129,7 +130,21 @@ $(function() {
          * Remember, loadFeed() is asynchronous.
          */
 
+         beforeEach(function(done) {
+           //title of the first entry feed element
+           var oldTitle = $(".header-title")[0].innerText();
+            loadFeed(1, function() {
+              done();
+            });
+         });
 
+         it("content changes for the first feed's title", function(done) {
+           //title of the first feed element after new feed is loaded
+           var newTitle = $(".header-title")[0].innerText();
 
+           //checks if newly loaded feed's title is different then the old one's
+           expect(newTitle).not.toBe(oldTitle);
+           done();
+         });
     });
 }());
