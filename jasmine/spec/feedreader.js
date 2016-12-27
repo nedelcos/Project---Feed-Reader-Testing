@@ -129,10 +129,11 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+         var oldTitle;
 
          beforeEach(function(done) {
            //title of the first entry feed element
-           var oldTitle = $(".header-title")[0].innerText();
+           oldTitle = $(".header-title")[0].innerText;
             loadFeed(1, function() {
               done();
             });
@@ -140,7 +141,7 @@ $(function() {
 
          it("content changes for the first feed's title", function(done) {
            //title of the first feed element after new feed is loaded
-           var newTitle = $(".header-title")[0].innerText();
+           var newTitle = $(".header-title")[0].innerText;
 
            //checks if newly loaded feed's title is different then the old one's
            expect(newTitle).not.toBe(oldTitle);
