@@ -34,9 +34,9 @@ $(function() {
 
          it("have URL defined and NOT empty", function() {
            allFeeds.forEach(function(feedItem) {
-             //checks if feedItem is defined
+             //checks if feedItem has an URL defined
              expect(feedItem.url).toBeDefined();
-             //checks if feedItem has content
+             //checks if feedItem URL is empty
              expect(feedItem.url.length).not.toBe(0);
            });
          });
@@ -46,6 +46,18 @@ $(function() {
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+
+         it("have name defined and NOT empty", function() {
+           allFeeds.forEach(function(feedItem) {
+             //checks if feedItem has a name defined
+             expect(feedItem.name).toBeDefined();
+             //checks if feedItem name is empty
+             expect(feedItem.name.length).not.toBe(0);
+           });
+         });
+
+
+
     });
 
 
