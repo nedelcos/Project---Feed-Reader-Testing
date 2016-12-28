@@ -79,18 +79,14 @@ $(function() {
          */
 
         it("menu hides/appears on menu-icon click", function() {
-            //if menu-hidden class is active, and user clicks the menu icon,
+            //when menu-hidden class is active, and user clicks the menu icon,
             //menu-hidden class should toggle
-            if ($("body").hasClass("menu-hidden")) {
-                $(".menu-icon-link").click();
-                expect($("body").hasClass("menu-hidden")).toBe(false);
-            }
-            //if menu-hidden class is inactive, and user clicks the menu icon,
+            $(".menu-icon-link").click();
+            expect($("body").hasClass("menu-hidden")).toBe(false);
+            //when menu-hidden class is inactive, and user clicks the menu icon,
             //menu-hidden class should toggle
-            if (!$("body").hasClass("menu-hidden")) {
-                $(".menu-icon-link").click();
-                expect($("body").hasClass('menu-hidden')).toBe(true);
-            }
+            $(".menu-icon-link").click();
+            expect($("body").hasClass('menu-hidden')).toBe(true);
         });
     });
 
@@ -113,7 +109,7 @@ $(function() {
 
         it("feed container not empty", function() {
             //checks if there is at least one .entry element
-            expect($('.feed .entry').length).not.toBe(0);
+            expect($('.feed .entry').length).toBeGreaterThan(0);
         });
     });
 
@@ -128,25 +124,18 @@ $(function() {
         var oldTitle;
 
         beforeEach(function(done) {
-            //title of the first entry feed element
-            oldTitle = $(".header-title")[0].innerText;
-            loadFeed(1, done);
-        });
-
-        beforeEach(function(done) {
             loadFeed(0, function() {
-                oldTitle = $(".header-title")[0].innerText;
+                oldTitle = $(".feed .entry").html();
                 loadFeed(1, done);
             });
         });
 
-        it("content changes for the first feed's title", function(done) {
+        it("content changes for the first feed's title", function() {
             //title of the first feed element after new feed is loaded
-            var newTitle = $(".header-title")[0].innerText;
+            var newTitle = $(".feed .entry").html();
 
             //checks if newly loaded feed's title is different then the old one's
             expect(newTitle).not.toBe(oldTitle);
-            done();
         });
     });
 }());
